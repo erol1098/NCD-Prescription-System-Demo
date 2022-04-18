@@ -1,4 +1,6 @@
 [www.patika.dev](https://www.patika.dev)
+[Short Description Video About Project](https://www.loom.com/share/fdf4e9039bd648eaa19af6ece20791f6)
+
 # `NEAR Prescription System` Demo
 
 ## 📄 Introduction
