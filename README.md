@@ -1,9 +1,10 @@
+[www.patika.dev](https://www.patika.dev)
 # `NEAR Prescription System` Demo
 
 ## 📄 Introduction
 
-\_Prescription system project is considered as an alternative to the system currently used in health industry. In this project, Near Blokchain's speed, immutability and accessibility features are used. Prescription is done by the doctor without the need for any other central system. In the same way, the prescription was obtained from the pharmacist, and the necessary actions were taken and the approval process was done through BlockChain. It is possible to access these transactions at any time.
-\_The following are the main functionalities of this smart contract:
+Prescription system project is considered as an alternative to the system currently used in health industry. In this project, Near Blokchain's speed, immutability and accessibility features are used. Prescription is done by the doctor without the need for any other central system. In the same way, the prescription was obtained from the pharmacist, and the necessary actions were taken and the approval process was done through BlockChain. It is possible to access these transactions at any time.
+The following are the main functionalities of this smart contract:
 
 1. Prescription is done by the doctor and write on blockchain,
 2. Pharmacist take the prescription from blockchain,
