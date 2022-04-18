@@ -36,7 +36,7 @@ Configure your near-cli to authorize your test account recently created:
 1. Clone repository
 
 ```bash
-git clone
+git clone https://github.com/erol1098/NCD-Prescription-System-Demo.git
 ```
 
 2. Yarn
