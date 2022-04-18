@@ -1,0 +1,19 @@
+{
+  "name": "prescription-system",
+  "version": "0.0.1",
+  "description": "NEAR Certificated Developer Training Demo",
+  "scripts": {
+    "dev": "watch -d -n 1 'clear && yarn test'",
+    "test": "yarn asp -f unit.spec",
+    "clean": "rm -rf ./build && rm -rf ./neardev",
+    "build": "asb --target debug",
+    "build:release": "asb",
+    "asp": "asp --verbose --nologo"
+  },
+  "keywords": [],
+  "author": "erol1098@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "near-sdk-as": "^3.1.0"
+  }
+}
