@@ -10,9 +10,9 @@ Prescription system project is considered as an alternative to the system curren
 The following are the main functionalities of this smart contract:
 
 1. Prescription is done by the doctor and write on blockchain,
-2. Pharmacist take the prescription from blockchain,
-3. Pharmacist approve the prescription through blockchain,
-4. View prescription and approval.
+2. Pharmacist takes the prescription from blockchain,
+3. Pharmacist approves the prescription through blockchain,
+4. Reach prescription info and approval info.
 
 ## 📦 Installation
 
@@ -30,7 +30,9 @@ To run this project locally you need to follow the next steps:
 
 ### Step 2: Configure your NEAR CLI
 
-Configure your near-cli to authorize your test account recently created:
+You need 2 NEAR CLI and 2 NEAR testnet account to run this demo properly. If you dont have 2 account, you can run the demo, too (Then, doctor account and pharmacist account will be same.).
+
+Configure your NEAR CLI'S to authorize your test accounts recently created:
 
     near login
 
@@ -64,7 +66,7 @@ yarn
 ./scripts/3.pharmacist-side.sh
 ```
 
-or execute following smart contract methods
+or execute following smart contract methods.
 
 ## 📑 Exploring the `NEAR Prescription System` smart contract methods
 
@@ -73,23 +75,23 @@ The following commands allow you to interact with the smart contract methods usi
 ### Command to write a prescription
 
 ```bash
-near call $CONTRACT writePrescription --accountId <your doctor test account>
+near call $CONTRACT writePrescription --accountId <doctor account>
 ```
 
 ### Command to get the written prescription
 
 ```bash
-near view $CONTRACT readPrescription '{"prescriptionId":"<Prescription Id>"}'
+near call $CONTRACT readPrescription '{"prescriptionId":"<Prescription Id>"}' --accountId <doctor or pharmacist account>
 ```
 
 ### Command to approve the prescription
 
 ```bash
-near call $CONTRACT approval '{"prescriptionId":"<Prescription Id>"}' --accountId <your pharmacist test account>
+near call $CONTRACT makeApproval '{"prescriptionId":"<Prescription Id>"}' --accountId <pharmacist account>
 ```
 
 ### Command to get the approval
 
 ```bash
-near view $CONTRACT readApproval '{"approvalId":"<Approval Id>"}'
+near call $CONTRACT readApproval '{"approvalId":"<Approval Id>"}' --accountId <doctor or pharmacist account>
 ```

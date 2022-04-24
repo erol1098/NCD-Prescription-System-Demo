@@ -1,5 +1,5 @@
-import { context, Context, PersistentVector, storage, RNG } from "near-sdk-as";
-import {} from "date";
+import { context, storage, RNG } from "near-sdk-as";
+
 // Medicine Class Created
 @nearBindgen
 export class Medicine {
@@ -39,27 +39,19 @@ export class Patient {
 @nearBindgen
 export class Prescription {
   prescriptionId: u32;
-  givenDate: u64;
+  timestamp: u64;
   patient: Patient;
   givenMedicines: Array<Medicine>;
   doctorId: String;
   constructor(patient: Patient) {
     this.prescriptionId = this.idGenerator();
-    const time = u64(parseInt(context.blockTimestamp.toString().slice(0, 10)));
-    this.givenDate = time;
+    // const time = u64(parseInt(context.blockTimestamp.toString().slice(0, 10)));
+    this.timestamp = context.blockTimestamp;
     this.patient = patient;
     this.givenMedicines = new Array<Medicine>();
-    this.doctorId = Context.sender;
+    this.doctorId = context.sender;
   }
-  getPatient(): Patient {
-    return this.patient;
-  }
-  getDoctorId(): String {
-    return this.doctorId;
-  }
-  getPresc(): Array<Medicine> {
-    return this.givenMedicines;
-  }
+
   idGenerator(): u32 {
     const random = new RNG<u32>(1, u32.MAX_VALUE);
     return random.next();
@@ -69,46 +61,32 @@ export class Prescription {
     storage.set(key, value);
     return ` ${this.prescriptionId} Prescription was created.`;
   }
-  @mutateState()
-  read(prescriptionId: string): String {
-    if (storage.hasKey(prescriptionId)) {
-      return `✅ Key [ ${prescriptionId} ] has value\n ${storage.getSome<String>(
-        prescriptionId
-      )}`;
-    } else {
-      return `🚫 Prescription Id [ ${prescriptionId} ] not found in storage.`;
-    }
-  }
 }
 
 // Pharmacy Class Created
 @nearBindgen
 export class Pharmacy {
   approvalId: u32;
-  time: u64;
+  timestamp: u64;
   prescriptionId: u32;
   pharmacyId: String;
   pharmacyApprove: bool;
 
   constructor(prescription: Prescription) {
     this.approvalId = this.idGenerator();
-    this.pharmacyId = Context.sender;
-    this.time = context.blockTimestamp;
+    this.pharmacyId = context.sender;
+    this.timestamp = context.blockTimestamp;
     this.pharmacyApprove = false;
     this.prescriptionId = prescription.prescriptionId;
   }
-  getPharmacyId(): String {
-    return this.pharmacyId;
-  }
+
   idGenerator(): u32 {
     const random = new RNG<u32>(1, u32.MAX_VALUE);
     return random.next();
   }
-
   @mutateState()
   write(key: string, value: Pharmacy): void {
     this.pharmacyApprove = true;
     storage.set(key, value);
-    // return ` ${this.prescriptionId} Prescription was implemented by ${this.pharmacyId}.`;
   }
 }

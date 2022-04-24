@@ -15,23 +15,26 @@ echo
 [ -z "$CONTRACT" ] || echo "Found it! \$DOCTOR is set to [ $DOCTOR ]"
 echo
 echo
-echo ---------------------------------------------------------
+echo --------------------------------------------------------------------
 echo "Step 1: Doctor writes a prescription for the patient"
 echo
 echo "This prescription is written on blockchain."
-echo ---------------------------------------------------------
-echo
+echo ---------------------------------------------------------------------
 near call $CONTRACT writePrescription --accountId $DOCTOR
-echo
-echo
-echo
 echo
 echo ----------------------------------------------------------------------
 echo "Step 2: You can view prescription with this command if you want to:"
 echo ----------------------------------------------------------------------
-echo "near view $CONTRACT readPrescription '{'prescriptionId':'<Prescription Id>'}'"
+echo "Use this format"
+echo ----------------------------------------------------------------------
+echo 'near call $CONTRACT readPrescription '{"prescriptionId":"<Prescription Id>"}' --accountId $DOCTOR'
 echo ----------------------------------------------------------------------
 echo
 echo
-echo "now run this script again to see changes made by this file"
+echo "Step 3: You can reach approval info after approval done by pharmacist"
+echo ----------------------------------------------------------------------
+echo "Use this format"
+echo ----------------------------------------------------------------------
+echo 'near call $CONTRACT readApproval '{"approvalId":"<Approval Id>"}' --accountId $DOCTOR'
+echo
 exit 0
